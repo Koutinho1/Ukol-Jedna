@@ -16,6 +16,13 @@ class SmartLight implements ISmartDevice {
         this.zapnuto = false;
     }
 
+    public String toString() {
+        return "SmartLight"
+                + "\nNazev: " + nazev
+                + "\nStav: " + stav();
+    }
+
+
     /**
      * Zapne chytré světlo.
      */

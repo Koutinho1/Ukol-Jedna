@@ -53,14 +53,13 @@ public class DomaciAsistent {
     public void odeberZarizeni() {
 
     }
-
     /**
      * Vypíše všechna spravovaná chytrá zařízení.
      */
     public void vypisZarizeni() {
         System.out.println("Seznam spravovaných zařízení:");
         for (ISmartDevice z : zarizeni) {
-            System.out.println(z.stav());
+            System.out.println(z.toString());
         }
     }
 
@@ -77,6 +76,9 @@ public class DomaciAsistent {
      * Vypne všechna spravovaná chytrá zařízení.
      */
     public void vypniVse() {
+        for (ISmartDevice z : zarizeni) {
+            z.vypni();
+        }
     }
 
     /**
@@ -95,14 +97,29 @@ public class DomaciAsistent {
      * Pokud termostat s daným názvem není nalezen, zobrazí chybovou zprávu.
      */
     public void ovladaniTermostatu() {
-        System.out.println("Zadejte název termostatu, který chcete ovládat:");
+        System.out.println("Seznam termostatů");
+        boolean nalezen = false;
+        for (ISmartDevice z : zarizeni) {
+            if (z instanceof SmartThermostat) {
+                System.out.println("- " + z);
+                nalezen = true;
+            }
+        }
+        if (!nalezen) {
+            System.out.println("V systému nejsou registrované žádné termostaty.");
+            return;
+        }
+        System.out.println();
+
+        System.out.print("Zadej název termostatu, který chceš ovládat: ");
         String nazev = scanner.nextLine();
         for (ISmartDevice z : zarizeni) {
-            if ((z instanceof SmartThermostat) && (z.stav().equals(nazev))) {
+            if (z instanceof SmartThermostat && ((SmartThermostat) z).getNazev().equalsIgnoreCase(nazev)) {
                 System.out.print("Zadejte novou teplotu: ");
                 double teplota = scanner.nextDouble();
                 scanner.nextLine();
                 ((SmartThermostat) z).nastavTeplotu(teplota);
+                System.out.println("Teplota byla úspěšně nastavena.");
                 return;
             }
         }
