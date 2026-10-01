@@ -8,6 +8,7 @@ public class Main {
 
         while (true) {
             System.out.println("\n--- Domácí Asistent Menu ---");
+            System.out.println("******************");
             System.out.println("1. Přidat nové zařízení");
             System.out.println("2. Odebrat zařízení");
             System.out.println("3. Vypisovat zařízení");
@@ -16,6 +17,7 @@ public class Main {
             System.out.println("6. Přehrát na všech službách");
             System.out.println("7. Ovládání termostatu");
             System.out.println("8. Konec");
+            System.out.println("******************");
             System.out.print("Vyberte možnost: ");
 
             int volba = scanner.nextInt();
@@ -24,24 +26,31 @@ public class Main {
             switch (volba) {
                 case 1:
                     asistent.pridejZarizeni();
+                    System.out.println("____________");
                     break;
                 case 2:
                     asistent.odeberZarizeni();
+                    System.out.println("____________");
                     break;
                 case 3:
                     asistent.vypisZarizeni();
+                    System.out.println("____________");
                     break;
                 case 4:
                     asistent.zapniVse();
+                    System.out.println("____________");
                     break;
                 case 5:
                     asistent.vypniVse();
+                    System.out.println("____________");
                     break;
                 case 6:
                     asistent.prehratNaVsechSluzbach();
+                    System.out.println("____________");
                     break;
                 case 7:
                     asistent.ovladaniTermostatu();
+                    System.out.println("____________");
                     break;
                 case 8:
                     System.out.println("Konec programu.");
